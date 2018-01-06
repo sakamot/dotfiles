@@ -30,3 +30,9 @@ $ exec $SHELL -l
 ```
 
 2. iTermのフォントを設定
+
+### tigインストール
+
+```
+$ brew install tig
+```
