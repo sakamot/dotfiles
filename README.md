@@ -36,3 +36,9 @@ $ exec $SHELL -l
 ```
 $ brew install tig
 ```
+
+### fzfのインストール
+
+```
+$ brew install fzf
+```
