@@ -1,0 +1,118 @@
+"#####表示設定#####
+set number "行番号を表示する
+set title "編集中のファイル名を表示
+set showmatch "括弧入力時の対応する括弧を表示
+syntax on "コードの色分け
+set tabstop=2 "インデントをスペース4つ分に設定
+set smartindent "オートインデント
+
+"#####検索設定#####
+set ignorecase "大文字/小文字の区別なく検索する
+set smartcase "検索文字列に大文字が含まれている場合は区別して検索する
+set wrapscan "検索時に最後まで行ったら最初に戻る
+
+"netrwは常にtree view
+let g:netrw_liststyle = 3
+"CVSと.で始まるファイルは表示しない
+"let g:netrw_list_hide = 'CVS,\(^\|\s\s\)\zs\.\S\+'
+"'v'でファイルを開くときは右側に開く。(デフォルトが左側なので入れ替え)
+let g:netrw_altv = 1
+
+set tabstop=2
+set shiftwidth=2
+set softtabstop=0
+set expandtab
+
+"タブ、空白、改行の可視化
+set list
+set listchars=tab:»-,trail:-,eol:,extends:»,precedes:«,nbsp:%
+
+set cursorline " カーソルラインをハイライト
+set cursorcolumn " 縦方向のハイライト
+
+" 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
+nnoremap j gj
+nnoremap k gk
+nnoremap <down> gj
+nnoremap <up> gk
+nnoremap <esc><esc> :noh<CR>
+
+"全角スペースをハイライト表示
+function! ZenkakuSpace()
+  highlight ZenkakuSpace cterm=reverse ctermfg=DarkMagenta gui=reverse guifg=DarkMagenta
+endfunction
+
+if has('syntax')
+augroup ZenkakuSpace
+  autocmd!
+    autocmd ColorScheme       * call ZenkakuSpace()
+    autocmd VimEnter,WinEnter * match ZenkakuSpace /　/
+  augroup END
+call ZenkakuSpace()
+endif
+
+syntax enable
+
+if has('vim_starting')
+  " 初回起動時のみrutimepathにneobundleのパスを指定する
+  set runtimepath+=~/.vim/bundle/neobundle.vim/
+endif
+
+" Neobundleを初期化
+call neobundle#begin(expand('~/.vim/bundle/'))
+
+"インストールするプラグインをここに記述
+NeoBundle 'Shougo/unite.vim'
+let g:unite_source_history_yank_enable = 1
+let g:unite_source_file_mru_limit = 40
+NeoBundle 'basyura/unite-rails'
+NeoBundle 'Shougo/vimfiler'
+NeoBundle 'mattn/emmet-vim'
+"NeoBundle 'taichouchou2/surround.vim'
+NeoBundle 'hail2u/vim-css3-syntax'
+NeoBundle 'taichouchou2/html5.vim'
+"NeoBundle 'taichouchou2/vim-javascript'
+NeoBundle 'tpope/vim-endwise'
+NeoBundle 'morhetz/gruvbox'
+NeoBundle 'w0ng/vim-hybrid'
+NeoBundle 'chriskempson/vim-tomorrow-theme'
+"NeoBundle 'ngmy/vim-rubocop'
+NeoBundle 'ngmy/vim-rubocop'
+NeoBundle 'scrooloose/syntastic'
+let g:syntastic_mode_map = { 'mode': 'passive',
+            \ 'active_filetypes': ['ruby'] }
+let g:syntastic_ruby_checkers = ['rubocop']
+
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'Shougo/neomru.vim'
+NeoBundle 'Shougo/vimfiler'
+
+call neobundle#end()
+
+"ファイルタイプ別のプラグイン・インデントを有効にする
+filetype plugin indent on
+
+"=======================================================
+"" colorscheme
+" ------------------------------------------------------
+syntax on
+set background=dark
+if ($ft=='ruby')
+  colorscheme Tomorrow-Night
+else
+"  colorscheme hybrid
+  colorscheme gruvbox
+endif
+
+" スペルチェック
+nnoremap <F9> :call SpellToggle()<CR>
+function! SpellToggle()
+    setlocal spell!
+    if exists("g:syntax_on")
+        syntax off
+    else
+        syntax on
+    endif
+endfunction
