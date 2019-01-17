@@ -61,3 +61,11 @@ fbr() {
   branch=$(echo "$branches" | fzf +m) &&
   git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
+
+# frm - remove git branch
+frm() {
+  local branches branch
+  branches=$(git branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git branch -D $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
