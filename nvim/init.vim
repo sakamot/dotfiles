@@ -22,7 +22,7 @@ set shiftwidth=2
 set softtabstop=0
 set expandtab "タブ入力を空白に変換
 "インサート中にjjを押したらEscとする↲
-inoremap jj <Esc>-↲
+inoremap jj <Esc>
 
 "タブ、空白、改行の可視化
 set list
