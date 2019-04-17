@@ -1,8 +1,18 @@
 # dotfiles
 
-### vimの設定
+### nvimの設定
 
-1. deinをインストール
+* rbenv, pyenv, homebrewをインストールする
+
+* neovimをインストール
+
+```
+$ brew install neovim
+$ export XDG_CONFIG_HOME=~/.config > ~/.bash_profile
+$ source ~/.bash_profile
+```
+
+* deinをインストール
 
 ```
 $ mkdir ~/.vim
@@ -11,10 +21,18 @@ $ curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
 $ sh installer.sh ~/.vim/dein
 ```
 
-2. vimを起動してコマンド実行
+* nvim配下を~/.config/配下に設置する
 
 ```
-:call dein#install()
+mkdir -p ~/.config/nvim/
+vim ~/.config/nvim/init.vim
+```
+
+* 以下のコマンドを実行
+
+```
+$ sudo pip3 install neovim
+$ brew install ctags
 ```
 
 ### フォントの設定
