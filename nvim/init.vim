@@ -108,6 +108,11 @@ let g:dein#install_max_processes = 16
 set completeopt+=noinsert "一つ目の候補を選択状態にする
 
 "========================================="
+" nerdtree
+"========================================="
+autocmd VimEnter * execute 'NERDTree'
+
+"========================================="
 " setting
 "========================================="
 filetype plugin indent on
