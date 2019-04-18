@@ -39,3 +39,6 @@ repo = 'tyru/open-browser.vim'
 
 [[plugins]]
 repo = 'Shougo/neocomplete.vim'
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
