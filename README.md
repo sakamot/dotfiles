@@ -33,6 +33,12 @@ vim ~/.config/nvim/init.vim
 ```
 $ sudo pip3 install neovim
 $ brew install ctags
+$ gem install solargraph
+```
+
+* nvimで以下を実行
+```
+:CocInstall coc-solargraph
 ```
 
 ### フォントの設定
