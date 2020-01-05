@@ -72,3 +72,9 @@ frm() {
   branch=$(echo "$branches" | fzf +m) &&
   git branch -D $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
 }
+
+# iTerm2 badge
+badge() {
+    printf "\e]1337;SetBadgeFormat=%s\a"\
+    $(echo -n "$1" | base64)
+}
