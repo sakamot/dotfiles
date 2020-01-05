@@ -78,3 +78,14 @@ badge() {
     printf "\e]1337;SetBadgeFormat=%s\a"\
     $(echo -n "$1" | base64)
 }
+
+# ssh with set badge
+ssh_local() {
+    local ssh_config=~/.ssh/config
+    local server=$(cat $ssh_config | grep "Host " | sed "s/Host //g" | fzf)
+    if [ -z "$server" ]; then
+        return
+    fi
+    badge $server
+    ssh $server
+}
