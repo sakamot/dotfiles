@@ -24,12 +24,20 @@ set expandtab "タブ入力を空白に変換
 "インサート中にjjを押したらEscとする↲
 inoremap jj <Esc>
 
+command W w
+command Q q
+
 "タブ、空白、改行の可視化
 set list
 set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 
 set cursorline " カーソルラインをハイライト
 set cursorcolumn " 縦方向のハイライト
+
+"折りたたみの設定
+set foldmethod=indent  "折りたたみ範囲の判断基準（デフォルト: manual）
+set foldlevel=5        "ファイルを開いたときにデフォルトで折りたたむレベル
+set foldcolumn=3       "左端に折りたたみ状態を表示する領域を追加する
 
 " 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
 nnoremap j gj
@@ -51,6 +59,9 @@ augroup ZenkakuSpace
   augroup END
 call ZenkakuSpace()
 endif
+
+"vueファイルをhtmlと認識させて、シンタックスハイライトを有効にする
+autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
 
 syntax enable
 
@@ -111,6 +122,8 @@ set completeopt+=noinsert "一つ目の候補を選択状態にする
 " nerdtree
 "========================================="
 autocmd VimEnter * execute 'NERDTree'
+" NERDTreeの画面を開閉する
+map <C-n> :NERDTreeToggle<CR>
 
 "========================================="
 " setting
