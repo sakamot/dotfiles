@@ -1,4 +1,8 @@
-export PS1='\[\e[36m\][\t \W]\[\e[0m\] $ '
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
+}
+
+export PS1=' \[\e[36m\]\W$(parse_git_branch)\[\e[0m\]$ '
 
 # rbenv
 export PATH="$HOME/.rbenv/bin:$PATH"
