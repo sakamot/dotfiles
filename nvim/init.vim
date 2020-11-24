@@ -21,7 +21,7 @@ let g:netrw_altv = 1
 set shiftwidth=2
 set softtabstop=0
 set expandtab "タブ入力を空白に変換
-"インサート中にjjを押したらEscとする↲
+"インサート中にjjを押したらEscとする
 inoremap jj <Esc>
 
 command W w
@@ -29,15 +29,11 @@ command Q q
 
 "タブ、空白、改行の可視化
 set list
-set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+"set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
+set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
 
 set cursorline " カーソルラインをハイライト
-set cursorcolumn " 縦方向のハイライト
-
-"折りたたみの設定
-set foldmethod=indent  "折りたたみ範囲の判断基準（デフォルト: manual）
-set foldlevel=5        "ファイルを開いたときにデフォルトで折りたたむレベル
-set foldcolumn=3       "左端に折りたたみ状態を表示する領域を追加する
+"set cursorcolumn " 縦方向のハイライト もっさりするらしい
 
 " 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
 nnoremap j gj
@@ -60,11 +56,7 @@ augroup ZenkakuSpace
 call ZenkakuSpace()
 endif
 
-"vueファイルをhtmlと認識させて、シンタックスハイライトを有効にする
-autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
-
 syntax enable
-
 
 "ファイルタイプ別のプラグイン・インデントを有効にする
 filetype plugin indent on
@@ -132,7 +124,8 @@ filetype plugin indent on
 
 syntax enable
 "colorscheme one
-let g:airline_theme = 'one'
+let g:airline_theme = 'solarized'
+let g:airline_solarized_bg='dark'
 " powerline enable(最初に設定しないとダメ)
 let g:airline_powerline_fonts = 1
 " タブバーをかっこよく
@@ -141,15 +134,26 @@ let g:airline#extensions#tabline#enabled = 1
 "let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 " gitのHEADから変更した行の+-を非表示(vim-gitgutterの拡張)
 let g:airline#extensions#hunks#enabled = 0
+" show git branch
+let g:airline#extensions#branch#enabled=1
 
 "=======================================================
 "" colorscheme
 " ------------------------------------------------------
 
+" important:
+set termguicolors
+
 syntax on
 set background=dark
-if ($ft=='ruby')
-  colorscheme Tomorrow-Night
-else
-  colorscheme hybrid
-endif
+
+let g:candid_color_store = {
+  \ "black": {"gui": "#1d1f21", "cterm256": "0"},
+\}
+
+colorscheme candid
+"if ($ft=='ruby')
+  "colorscheme Tomorrow-Night
+"else
+  "colorscheme hybrid
+"endif
