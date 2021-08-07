@@ -21,11 +21,15 @@ $ curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh
 $ sh installer.sh ~/.vim/dein
 ```
 
-* nvim配下を~/.config/配下に設置する
+* Zinitのインストール
+
+[zdharma/zinit: Flexible and fast Zsh plugin manager with clean fpath, reports, completion management, Turbo, annexes, services, packages\.](https://github.com/zdharma/zinit)
+
+* シンボリックリンク
 
 ```
-mkdir -p ~/.config/nvim/
-vim ~/.config/nvim/init.vim
+$ ln -s ~/dotfiles/.zshrc ~/
+$ ln -s ~/dotfiles/nvim/init.vim ~/.config/nvim/init.vim
 ```
 
 * 以下のコマンドを実行
@@ -41,19 +45,9 @@ $ gem install solargraph
 :CocInstall coc-solargraph
 ```
 
-### フォントの設定
+### フォント
 
-1. Rictyをインストール
-
-```
-$ brew tap sanemat/font
-$ brew install --vim-powerline ricty
-$ cp -f /usr/local/Cellar/ricty/3.2.3/share/fonts/Ricty*.ttf ~/Library/Fonts/ 
-$ fc-cache -vf
-$ exec $SHELL -l
-```
-
-2. iTermのフォントを設定
+HackGenNerd Console
 
 ### tigインストール
 
