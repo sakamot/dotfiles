@@ -1,34 +1,22 @@
+# Rubyの自動補完
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = '''
-let g:deoplete#enable_at_startup   = 1
-'''
+repo = 'Shougo/deoplete-rct'
+on_ft = ['ruby']
 
+# Rubyの自動補完
 [[plugins]]
-repo = 'Shougo/neosnippet.vim'
-depends = ['neosnippet-snippets', 'context_filetype.vim']
+repo = 'fishbullet/deoplete-ruby'
+on_ft = ['ruby']
+
+# Rubyの自動補完
+[[plugins]]
+repo = 'osyo-manga/vim-monster'
 on_i = 1
-hook_source = '''
-" Plugin key-mappings.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-" Note: It must be "imap" and "smap".  It uses <Plug> mappings.
-"imap <expr><TAB>
-" \ pumvisible() ? "\<C-n>" :
-" \ neosnippet#expandable_or_jumpable() ?
-" \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-" \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
- For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
+hook_add = '''
+let g:monster#completion#rcodetools#backend = "async_rct_complete"
+let g:deoplete#sources#omni#input_patterns = {
+  \ "ruby" : '[^. *\t]\.\w*\|\h\w*::',
+  \}
 '''
 
 # rubyの自動補完
@@ -40,21 +28,16 @@ rev = 'release'
 on_ft = ['ruby']
 hook_source = '''
 let g:coc_global_extensions = ['coc-solargraph']
-
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 '''
-
-[[plugins]]
-repo = 'Shougo/neosnippet-snippets'
 
 # rubyのend補完
 [[plugins]]

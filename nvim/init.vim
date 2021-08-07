@@ -29,11 +29,14 @@ command Q q
 
 "タブ、空白、改行の可視化
 set list
-"set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
-set listchars=tab:»-,trail:-,extends:»,precedes:«,nbsp:%
+set listchars=tab:»-,trail:-,eol:↲,extends:»,precedes:«,nbsp:%
 
 set cursorline " カーソルラインをハイライト
-"set cursorcolumn " 縦方向のハイライト もっさりするらしい
+
+"折りたたみの設定
+set foldmethod=indent  "折りたたみ範囲の判断基準（デフォルト: manual）
+set foldlevel=5        "ファイルを開いたときにデフォルトで折りたたむレベル
+set foldcolumn=3       "左端に折りたたみ状態を表示する領域を追加する
 
 " 行が折り返し表示されていた場合、行単位ではなく表示行単位でカーソルを移動する
 nnoremap j gj
@@ -55,6 +58,9 @@ augroup ZenkakuSpace
   augroup END
 call ZenkakuSpace()
 endif
+
+"vueファイルをhtmlと認識させて、シンタックスハイライトを有効にする
+autocmd BufNewFile,BufRead *.{html,htm,vue*} set filetype=html
 
 syntax enable
 
@@ -86,7 +92,7 @@ if dein#load_state(s:dein_dir)
 
   " プラグインリストを収めた TOML ファイル
   " 予め TOML ファイル（後述）を用意しておく
-  let g:rc_dir    = expand('~/.config/nvim/rc')
+  let g:rc_dir    = expand('~/dotfiles/nvim/rc')
   let s:toml      = g:rc_dir . '/dein.toml'
   let s:lazy_toml = g:rc_dir . '/dein_lazy.toml'
 
@@ -109,6 +115,8 @@ let g:dein#install_max_processes = 16
 " deoplete
 "========================================="
 set completeopt+=noinsert "一つ目の候補を選択状態にする
+let g:deoplete#enable_at_startup = 1
+let g:coc_disable_startup_warning = 1
 
 "========================================="
 " nerdtree
@@ -122,10 +130,8 @@ map <C-n> :NERDTreeToggle<CR>
 "========================================="
 filetype plugin indent on
 
-syntax enable
 "colorscheme one
-let g:airline_theme = 'solarized'
-let g:airline_solarized_bg='dark'
+let g:airline_theme = 'one'
 " powerline enable(最初に設定しないとダメ)
 let g:airline_powerline_fonts = 1
 " タブバーをかっこよく
@@ -133,27 +139,18 @@ let g:airline#extensions#tabline#enabled = 1
 " 選択行列の表示をカスタム(デフォルトだと長くて横幅を圧迫するので最小限に)
 "let g:airline_section_z = airline#section#create(['windowswap', '%3p%% ', 'linenr', ':%3v'])
 " gitのHEADから変更した行の+-を非表示(vim-gitgutterの拡張)
-let g:airline#extensions#hunks#enabled = 0
-" show git branch
-let g:airline#extensions#branch#enabled=1
+" let g:airline#extensions#hunks#enabled = 0
 
 "=======================================================
 "" colorscheme
 " ------------------------------------------------------
 
 " important:
-set termguicolors
+"set termguicolors
 
-syntax on
 set background=dark
-
-let g:candid_color_store = {
-  \ "black": {"gui": "#1d1f21", "cterm256": "0"},
-\}
-
-colorscheme candid
-"if ($ft=='ruby')
-  "colorscheme Tomorrow-Night
-"else
-  "colorscheme hybrid
-"endif
+if ($ft=='ruby')
+  colorscheme Tomorrow-Night
+else
+  colorscheme hybrid
+endif
