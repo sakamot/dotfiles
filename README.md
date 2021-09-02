@@ -43,6 +43,8 @@ $ gem install solargraph
 * nvimで以下を実行
 ```
 :CocInstall coc-solargraph
+:CocInstall coc-html
+:CocInstall coc-tsserver 
 ```
 
 ### フォント

@@ -1,4 +1,5 @@
 {
   "suggest.enablePreselect": true,
-  "solargraph.commandPath": "/Users/sakamoto/.rbenv/shims/solargraph"
+  "solargraph.commandPath": "/Users/sakamoto/.rbenv/shims/solargraph",
+  "html.filetypes": ["html","handlebars","htmldjango","blade","js"]
 }

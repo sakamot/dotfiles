@@ -27,7 +27,7 @@ merge = 0
 rev = 'release'
 on_ft = ['ruby']
 hook_source = '''
-let g:coc_global_extensions = ['coc-solargraph']
+let g:coc_global_extensions = ['coc-solargraph', 'coc-html', 'coc-tsserver']
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
