@@ -39,3 +39,6 @@ repo = 'Shougo/neocomplete.vim'
 
 [[plugins]]
 repo = 'scrooloose/nerdtree'
+
+[[plugins]]
+repo = 'alvan/vim-closetag'

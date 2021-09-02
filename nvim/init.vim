@@ -154,3 +154,9 @@ if ($ft=='ruby')
 else
   colorscheme hybrid
 endif
+
+"=======================================================
+"" closetag
+" ------------------------------------------------------
+
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
