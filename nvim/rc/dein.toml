@@ -45,3 +45,6 @@ repo = 'alvan/vim-closetag'
 
 [[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
+
+[[plugins]]
+repo = 'jiangmiao/auto-pairs'
