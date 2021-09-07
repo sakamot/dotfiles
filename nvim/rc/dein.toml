@@ -42,3 +42,6 @@ repo = 'scrooloose/nerdtree'
 
 [[plugins]]
 repo = 'alvan/vim-closetag'
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
