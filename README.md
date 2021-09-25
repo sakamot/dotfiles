@@ -40,6 +40,16 @@ $ brew install ctags
 $ gem install solargraph
 ```
 
+zshrcに↓を追加する
+
+```zshrc
+alias ctags='/usr/local/Cellar/ctags/5.8_1/bin/ctags'
+```
+
+```
+$ ctags -R .
+```
+
 * nvimで以下を実行
 ```
 :CocInstall coc-solargraph
